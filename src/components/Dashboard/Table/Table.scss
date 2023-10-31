@@ -1,0 +1,503 @@
+@import "../../../scss/variables";
+
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+  font-family: "Roboto", "Oxygen", sans-serif, "Ubuntu", "Cantarell",
+  "Fira Sans", "Droid Sans", "Helvetica Neue";
+  border: none;
+  color: $white-color !important;
+  line-height: $line-height-20;
+  font-size: $font-size-16 !important;
+  font-weight: $font-weight-700 !important;
+  border-radius: $border-radius-4;
+  text-transform: capitalize !important;
+  box-shadow: none !important;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $heading-color !important;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color !important;
+  padding: $btn-padding !important;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-danger {
+  background-color: $error-color;
+
+  &:hover {
+    background-color: $heading-color !important;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color !important;
+  padding: $btn-padding;
+  line-height: $line-height-24;
+}
+
+.btn-white {
+  box-shadow: none !important;
+  padding: $btn-padding;
+  background-color: $white-color !important;
+  border: none;
+
+  &:hover {
+    background-color: rgb(238, 238, 238) !important;
+    box-shadow: none !important;
+  }
+}
+
+.btn-outline {
+  color: $primary-color !important;
+  font-style: normal;
+  padding: $btn-padding;
+  background-color: $white-color;
+  border: 1.5px solid $primary-color;
+}
+
+.btn-text-uppercase {
+  text-transform: uppercase !important;
+}
+
+//  Breadcrum global style
+.BreadCrum_main {
+  margin-bottom: 25px;
+
+  span {
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5) {
+      font-size: $font-size-16;
+      line-height: $line-height-20;
+      color: $grey-color;
+    }
+
+    &:nth-child(1) {
+      font-weight: $font-weight-500;
+      font-size: $font-size-24;
+      line-height: $line-height-28;
+      padding-right: 5px;
+      border-right: 1px solid $grey-color;
+    }
+
+    &:nth-child(2) {
+      color: $link-color;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+
+    &:nth-child(4) {
+      cursor: pointer;
+    }
+  }
+}
+
+.border-radius-4 {
+  border-radius: $border-radius-4;
+}
+
+.border-radius-8 {
+  border-radius: $border-radius-8;
+}
+
+.border-radius-10 {
+  border-radius: $border-radius-10;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// Color classes start here
+.text-white {
+  color: $white-color;
+}
+
+.primary-color {
+  color: $primary-color;
+}
+
+.disabled-color {
+  color: #b1b1b1;
+}
+
+.icon-color {
+  color: $icon-color;
+}
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+.selected-field-color {
+  color: $selected-field-color;
+}
+
+.grey-color {
+  color: $grey-color;
+}
+
+.error-color {
+  color: $error-color !important;
+}
+
+.label-color {
+  color: $tooltip-bg-dark !important;
+}
+
+.table-status-paid {
+  background: $table-status-paid;
+}
+.table-status-rejected{
+  background: $error-color !important;
+}
+.border-color {
+  color: $border-color-default;
+}
+
+.text-light {
+  color: $tooltip-bg-light;
+}
+
+// Color classes end here
+
+// font classes start here
+.fs-10 {
+  font-size: $font-size-10;
+}
+
+.fs-12 {
+  font-size: $font-size-12;
+}
+
+.fs-14 {
+  font-size: $font-size-14;
+}
+
+.fs-16 {
+  font-size: $font-size-16;
+}
+
+.fs-18 {
+  font-size: $font-size-18;
+}
+
+.fs-20 {
+  font-size: $font-size-20;
+}
+
+.fs-22 {
+  font-size: $font-size-22 !important;
+}
+
+.fs-24 {
+  font-size: $font-size-24;
+}
+
+.fs-28 {
+  font-size: $font-size-28;
+}
+
+.fs-32 {
+  font-size: $font-size-32;
+}
+
+.fs-40 {
+  font-size: $font-size-40;
+}
+
+.fw-500 {
+  font-weight: $font-weight-500;
+}
+
+.fw-600 {
+  font-weight: $font-weight-600;
+}
+
+.fw-700 {
+  font-weight: $font-weight-700;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+}
+
+.m-0 {
+  margin-block: 0;
+}
+
+// font classes end here
+.line-height-16 {
+  line-height: $line-height-16;
+}
+
+.line-height-20 {
+  line-height: $line-height-20;
+}
+
+.line-height-24 {
+  line-height: $line-height-24;
+}
+
+/* Table css */
+.table-hold {
+  padding: 15px;
+  background: $white-color;
+  box-shadow: -8px 8px 45px rgba(0, 0, 0, 0.2) !important;
+
+  .MuiPagination-root ul li {
+    border-radius: 4px;
+
+    button {
+      border: none !important;
+      box-shadow: none !important;
+      padding: 15px 5px !important;
+
+      &.Mui-selected {
+        background-color: $secondary-color !important;
+        color: $white-color !important;
+      }
+    }
+  }
+
+  /* Table header styling */
+  .toolbox {
+    background-color: $table-header-bg;
+    padding: 0px 15px !important;
+
+    h6 {
+      margin: 0;
+    }
+
+    .search-hold {
+      .searchbox {
+        .searchbar {
+          padding: 14px 40px;
+          border: none;
+          position: relative;
+
+          &::placeholder {
+            color: #cacaca;
+          }
+
+          &:focus {
+            outline: none !important;
+          }
+        }
+
+        svg {
+          position: absolute;
+          top: 20px;
+          margin-left: 10px;
+          z-index: 99;
+          color: #6c6b6b !important;
+        }
+      }
+    }
+
+    .icons-btns .headIcon,
+    .icons-btns svg {
+      background-color: $secondary-color;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+        0px 2px 4px rgba(0, 0, 0, 0.25);
+
+      img {
+        position: relative;
+        top: 10px;
+      }
+
+      .export-Icon {
+        position: relative;
+        top: 9px;
+        right: 2px;
+      }
+    }
+
+    .icons-btns svg {
+      height: 27px;
+      width: 27px;
+      padding: 7px;
+    }
+  }
+
+  /* rows styling */
+  .MuiTableContainer-root {
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+
+    .MuiTable-root {
+      background-color: $white-color;
+      width: 100%;
+      border: none !important;
+
+      tr {
+        td {
+          max-width: 80px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        td,
+        td p,
+        th,
+        th p {
+          font-size: $font-size-14;
+          line-height: $line-height-20;
+          color: $tooltip-bg-dark;
+          border-bottom: none;
+          margin: 0;
+
+          svg {
+            color: $tooltip-bg-dark;
+            cursor: pointer;
+          }
+        }
+
+        th {
+          p {
+            color: $text-grey;
+            display: flex;
+            align-items: center;
+          }
+
+          svg {
+            color: $light-icon-color !important;
+          }
+        }
+
+        &:last-child th {
+          border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
+        }
+      }
+
+      &+p {
+        color: $tooltip-bg-dark;
+        font-size: 14px;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 685px) {
+    .toolbox {
+      padding: 15px !important;
+
+      .toolbox-hold {
+        justify-content: flex-start !important;
+        gap: 15px !important;
+      }
+    }
+
+    .search-hold {
+      flex-direction: column !important;
+      align-items: flex-start;
+      gap: 20px !important;
+      width: 100%;
+
+      .searchbox {
+        margin-left: 0;
+        width: 97%;
+
+        .searchbar {
+          padding: 12px 0px 10px 10px !important;
+          width: 100%;
+        }
+
+        svg {
+          right: 22px;
+          top: 63px !important;
+        }
+      }
+    }
+
+    .icons-btns {
+      width: 100%;
+
+      button {
+        float: right;
+      }
+    }
+  }
+}
+
+//table styling end
+
+.filterBox {
+  background: $white-color;
+  border-radius: $border-radius-8;
+  box-shadow: 0px 0px 3px 1px rgba($color: $black-color, $alpha: 0.25);
+  padding: 0.3rem 1rem 1rem;
+  position: relative;
+
+  .top-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0 1rem;
+
+    .clear-btn {
+      text-transform: capitalize;
+      color: $dashboard-alert-color;
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    margin-right: 0px !important;
+
+    .grid {
+      grid-template-columns: none !important;
+    }
+
+    .showFilter {
+      position: unset !important;
+    }
+  }
+}
+
+[type="file"]::file-selector-button {
+  display: none;
+  cursor: pointer;
+}
+
+.MuiRating-iconEmpty svg {
+  color: #e5e9ec;
+}
+
+.MuiRating-iconFilled {
+  color: #f1e44a;
+}
+
+.table-status-process{
+  background: $yellow-color;
+}
+.appeal-table-status-rejected{
+  color: $error-color !important;
+  font-weight: bold;
+}
+.appeal-table-status-process{
+  color: $yellow-color !important;
+  font-weight: bold;
+}

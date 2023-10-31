@@ -1,0 +1,87 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+$font-family-Roboto: "Roboto", "sans-serif";
+
+//colors
+$black-color: #000000;
+$white-color: #ffffff;
+$primary-color: #ffc816;
+$secondary-color: #7fb341;
+$grey-color: #434242;
+$selected-tab-color: #323131;
+$error-color: #dc3545;
+$alertsuccess-bg: #d0e7d6;
+$alerterror-bg: #F7D5D8;
+$success-color: #165C27;
+$mediumgreen-color:#198754;
+$yellow-color: #FFC107;
+$warning-text-color: #8F6D06;
+$link-color: #00BCD4;
+$icon-color: #6C6B6B;
+$error-icon-color: #F8BB86;
+$heading-color: $grey-color;
+$selected-field-color: #6c757d;
+$text-grey:#757575;
+$light-icon-color:#BABABA ;
+$whitesmoke-color: #e5e5e5;
+$tooltip-bg-dark: #152536;
+$tooltip-bg-light: #607d8b;
+$inputs-border: #212121;
+$table-header-bg: #ebebee;
+$table-status-new: #1f91f3;
+$table-status-paid: #28a745;
+$orange-color: #f37242;
+$paynow-btn-bg: #e4edff;
+$appeal-btn-bg: #feeaea;
+$topup-btn-bg: #ede4fe;
+$autopay-btn-bg: #e3ffee;
+$paynow-icon-color: #93bcf4;
+$appeal-icon-color: #f6a396;
+$topup-icon-color: #b88bee;
+$autopay-icon-color: #5ac688;
+$dashboard-alert-color: #17a2b8;
+$main-body: #f0f3fb;
+$light-grey: #eeeeee;
+
+$light-boShadow:-8px 8px 12px 0 rgba(218, 222, 232, 0.4);
+
+$border-color-default: #C4C4C4;
+$rating-star-color: linear-gradient(136.4deg, #FAFF00 0%, #FACE02 102.56%);
+$green-gradient:linear-gradient(267.66deg, #7FB341 -7.03%, #9BD950 104.63%);
+$mix-grey-color: linear-gradient(180deg, #464c52 0%, rgba(70, 76, 82, 0.6) 100%);
+$orange-gradient-color: linear-gradient(138.39deg, #FF9766 23.52%, #EA6C00 405.33%, rgba(255, 151, 102, 0) 405.95%);
+
+/*font-size vars */
+$font-size-48: 48px;
+$font-size-40: 40px;
+$font-size-32: 32px;
+$font-size-28: 28px;
+$font-size-24: 24px;
+$font-size-22: 22px;
+$font-size-20: 20px;
+$font-size-18: 18px;
+$font-size-16: 16px;
+$font-size-14: 14px;
+$font-size-12: 12px;
+$font-size-10: 10px;
+
+/* font-weight-vars */
+$font-weight-500: 500;
+$font-weight-600: 600;
+$font-weight-700: 700;
+
+/* line-height vars*/
+$line-height-16: 16px;
+$line-height-20: 20px;
+$line-height-24: 24px;
+$line-height-28: 28px;
+$line-height-32: 32px;
+$line-height-38: 38px;
+
+/* padding vars */
+$btn-padding: 10px 22px;
+
+/* radius vars */
+$border-radius-4: 4px;
+$border-radius-8: 8px;
+$border-radius-10: 10px;
