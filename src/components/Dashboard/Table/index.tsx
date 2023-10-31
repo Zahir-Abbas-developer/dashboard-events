@@ -3,17 +3,24 @@ import {  useState } from "react";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { tableHeader } from "./table.data";
 import { v4 as uuidv4 } from "uuid";
+
+
 import { UnfoldMore,RemoveRedEye } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { useGetEventsQuery } from "@/services/event-api";
 const EventsTable=()=>{
-  // const {data,isLoading}=useGetEventsQuery({})
+  const {data,isLoading}=useGetEventsQuery({})
   const [modaldata, setModalData] = useState<any>();
   const [page, setPage] = useState(0);
   const [itemId, setItemId] = useState<number>(1);
   const [modal, setModal] = useState(false);
   const [sortItem, setSortItem] = useState<any>({ type: true, field: "createdAt" });
-  // console.log(data)
+  console.log(data)
+
+
+
+
+
 return(
   <TableContainer>
   <Table className="table-status-pcn" sx={{ minWidth: 650 }} aria-label="simple table">
