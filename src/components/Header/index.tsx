@@ -14,7 +14,7 @@ const Header = (props: any) => {
   
   return (
     //Header
-    <AppBar position="relative" sx={{ pr: !isResponsive ? "25px" : "0px" ,  
+    <AppBar position="sticky" sx={{ pr: !isResponsive ? "25px" : "0px" ,  
     background: theme.palette.common.white,
     boxShadow: 'none',
     color: 'black',

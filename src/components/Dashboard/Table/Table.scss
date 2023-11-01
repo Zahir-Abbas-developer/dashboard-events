@@ -70,10 +70,11 @@
   text-transform: uppercase !important;
 }
 
-//  Breadcrum global style
+//  Breadcrum 
 .BreadCrum_main {
   margin-bottom: 25px;
-
+  margin-top: 25px;
+  margin-left: 25px;
   span {
 
     &:nth-child(1),
@@ -321,6 +322,7 @@
       img {
         position: relative;
         top: 10px;
+        left: 6px;
       }
 
       .export-Icon {
