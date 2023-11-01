@@ -2,12 +2,12 @@
 import { TableHeader } from "./Table.interface";
 
 export const tableHeader: TableHeader[] = [
-  { name: "Event Id", sortdata: "id", algntext: "",sortIcon:false },
-    { name: "Event Category", sortdata: "eventCategory", algntext: "",sortIcon:true },
+  { name: "Event No.", sortdata: "id", algntext: "",sortIcon:false },
+    { name: "Event Category", sortdata: "-category", algntext: "",sortIcon:true },
     { name: "Event Description", sortdata: "eventDescription", algntext: "",sortIcon:true },
-    { name: "Event Start Date", sortdata: "vehicleNumber", algntext: "",sortIcon:true },
-    { name: "Event End Date", sortdata: "offenceType", algntext: "",sortIcon:true },
-    { name: "Event Title", sortdata: "createdAt", algntext: "",sortIcon:false },
+    { name: "Event Start Date", sortdata: "-start", algntext: "",sortIcon:true },
+    { name: "Event End Date", sortdata: "-end", algntext: "",sortIcon:true },
+    { name: "Event Title", sortdata: "-title", algntext: "",sortIcon:true },
   
     // { name: "Status", sortdata: "status", algntext: "left" }
   ];

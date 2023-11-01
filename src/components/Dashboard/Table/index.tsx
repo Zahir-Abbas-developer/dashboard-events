@@ -23,7 +23,7 @@ const EventsTable=()=>{
   const [modal, setModal] = useState(false);
   const [searchEventCategory, setSearchEventCategory] = useState("");
   const [category, setCategory] = useState("");
-  const [sortItem, setSortItem] = useState<any>({ type: true, field: "createdAt" });
+  const [sortItem, setSortItem] = useState<any>({ type: true, field: "" });
 
 
 
@@ -34,6 +34,8 @@ const debouncedResults = (event: React.ChangeEvent<HTMLInputElement>) => {
 const paramsObj:any = {}
 if ((searchEventCategory)) paramsObj['category'] = searchEventCategory;
 if ((category)) paramsObj['category'] = category;
+if ((sortItem.field)) paramsObj['sort'] = sortItem.field;
+
 
 const params = "&" + new URLSearchParams(paramsObj).toString();
 const {data,isLoading,isSuccess}=useGetEventsQuery({params})
@@ -43,6 +45,7 @@ let eventsData:any
 if(isSuccess){
   eventsData=data
 }
+console.log(sortItem)
 return(
   <>
     <Box className=" table-hold  border-radius-8 " sx={{ mt: 2 }}>
