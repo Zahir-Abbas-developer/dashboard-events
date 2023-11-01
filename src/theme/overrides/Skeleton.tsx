@@ -9,7 +9,7 @@ export default function Skeleton(theme: any) {
 
       styleOverrides: {
         root: {
-          backgroundColor: theme.palette.background.neutral,
+          // backgroundColor: theme.palette.background.neutral,
         },
       },
     },

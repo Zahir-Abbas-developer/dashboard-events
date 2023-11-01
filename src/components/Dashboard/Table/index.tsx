@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { eventsDataFavourites } from "@/redux/slices/FavouritesEvents";
 import { useAppSelector } from "@/redux/store";
 
+
 const EventsTable = () => {
 
   const [modaldata, setModalData] = useState<any>();
@@ -49,6 +50,9 @@ const EventsTable = () => {
     eventsData = data
   }
 
+  const getFavouriteEvents: any = useAppSelector((state: any) => state?.favouriteEvents);
+    console.log(getFavouriteEvents)
+
   const handleCheckboxChange = (row:any) => {
     setCheckedRows((prevCheckedRows:any) => {
       
@@ -59,7 +63,7 @@ const EventsTable = () => {
        // Dispatch your action outside of the state update function
    
     });
-    dispatch(eventsDataFavourites(row));
+    dispatch(eventsDataFavourites([row]));
   };
 
   return (
@@ -210,6 +214,7 @@ const EventsTable = () => {
 
         />
       </Box>
+    
     </>
 
 
