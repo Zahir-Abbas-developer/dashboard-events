@@ -2,6 +2,7 @@
 import { baseAPI } from '@/services/base-api';
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import eventsSlice from './slices/FavouritesEvents';
 
 // Define an action to set store initialization
 // export const setStoreInitialized = createAction("store/setInitialized");
@@ -9,6 +10,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 const store = configureStore({
   reducer: {
     [baseAPI.reducerPath]: baseAPI.reducer,
+    favouriteEvents:eventsSlice.reducer
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware().concat(baseAPI.middleware),

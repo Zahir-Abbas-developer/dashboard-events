@@ -25,7 +25,7 @@ export default function RootLayout({
  
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{padding:"40px",background:"#f0f3fb"}}>
       <Layout >
       <ThemeProvider>
       <ThemeLocalization>

@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Box, Button, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, useTheme } from "@mui/material";
+import { Box, Button, Checkbox, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, useTheme } from "@mui/material";
 import { tableHeader } from "./table.data";
 import { v4 as uuidv4 } from "uuid";
 import { UnfoldMore, Search } from "@mui/icons-material";
@@ -11,6 +11,9 @@ import { ApiLoader } from "@/components/PreLoader/Index";
 import { debouncedSearch } from "@/utils/debounce";
 import FilterPopover from "../FilterCategory";
 import './Table.scss'
+import { useDispatch } from "react-redux";
+import { eventsDataFavourites } from "@/redux/slices/FavouritesEvents";
+import { useAppSelector } from "@/redux/store";
 
 const EventsTable = () => {
 
@@ -23,8 +26,9 @@ const EventsTable = () => {
   const [country, setCountry] = useState("");
   const [category, setCategory] = useState("");
   const [sortItem, setSortItem] = useState<any>({ type: true, field: "" });
+  const [checkedRows, setCheckedRows] = useState<any>({}); // Maintain the checked status for each row
 
-  const theme = useTheme()
+  const dispatch = useDispatch()
 
   const debouncedResults = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -44,6 +48,19 @@ const EventsTable = () => {
   if (isSuccess) {
     eventsData = data
   }
+
+  const handleCheckboxChange = (row:any) => {
+    setCheckedRows((prevCheckedRows:any) => {
+      
+      return {
+        ...prevCheckedRows,
+        [row.id]: !prevCheckedRows[row.id],
+      };
+       // Dispatch your action outside of the state update function
+   
+    });
+    dispatch(eventsDataFavourites(row));
+  };
 
   return (
     <>
@@ -111,14 +128,14 @@ const EventsTable = () => {
               <TableBody>
                 {eventsData?.results?.map((row: any, index: any) => (
                   <TableRow key={uuidv4()}>
-                    <TableCell>{itemId + index}</TableCell>
+           
+                    <TableCell>  {itemId + index}</TableCell>
                     <TableCell>{row.category}</TableCell>
                     <TableCell>{row.country}</TableCell>
-                    <TableCell>{row.description ? row.description.substring(0, 40) + "..." : "------"}</TableCell>
+                    <TableCell>{row.description ? row.description.substring(0, 10):"-------" }</TableCell>
                     <TableCell>{dayjs(row.start).format("DD/MM/YYYY")}</TableCell>
                     <TableCell>{dayjs(row.end).format("DD/MM/YYYY")}</TableCell>
-                    <TableCell>{row.title}</TableCell>
-
+                   
                     <TableCell>
                       <Button
                         onClick={() => {
@@ -129,17 +146,25 @@ const EventsTable = () => {
                         disableRipple
                         sx={{ width: "auto", cursor: 'default' }}
                       >
-                        <Button variant="contained" className="small" >   View Details</Button>
+                        <Button variant="contained" className="small" style={{height:"36px"}} > View Details</Button>
 
                       </Button>
                     </TableCell>
-
+                    <TableCell>
+                    <Checkbox
+              size="small"
+              style={{ textAlign: "center" }}
+              checked={checkedRows[row.id] || false} // Use the checked status from state
+              onChange={() => handleCheckboxChange(row)}
+            />
+                    </TableCell>
+            
                   </TableRow>
                 ))}
               </TableBody>
             )}
           </Table>
-          {isLoading ? <ApiLoader /> : isError && <p style={{ textAlign: "center" }}>No Results Found</p>}
+          {isLoading ? <ApiLoader /> : isError && <p style={{ textAlign: "center" }}>No Results Found </p>}
         </TableContainer>
         <Box mt="15px">
           {eventsData?.count > 0 && (
