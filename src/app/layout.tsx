@@ -4,8 +4,7 @@ import { Inter } from 'next/font/google'
 import './globals.scss'
 import ThemeProvider from '@/theme'
 import ThemeLocalization from '@/theme/ThemeLocalization'
-import { Provider } from 'react-redux'
-import store from '@/redux/store'
+import { SnackbarProvider } from 'notistack';
 import Layout from '@/components/Layout'
 
 
@@ -27,11 +26,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} style={{padding:"40px",background:"#f0f3fb"}}>
       <Layout >
+      
       <ThemeProvider>
       <ThemeLocalization>
         {children}
         </ThemeLocalization>
     </ThemeProvider> 
+   
       </Layout>
    
     

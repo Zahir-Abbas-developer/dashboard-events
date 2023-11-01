@@ -16,7 +16,7 @@ const store = configureStore({
     defaultMiddleware().concat(baseAPI.middleware),
 });
 
-// store.dispatch(setStoreInitialized()); // Dispatch action to indicate store is initialized
+
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
