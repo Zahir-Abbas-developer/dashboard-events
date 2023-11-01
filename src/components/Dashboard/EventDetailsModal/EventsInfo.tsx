@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Button } from "@mui/material";
 
 import dayjs from "dayjs";
 
@@ -12,9 +12,8 @@ interface EventDetailsI {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 const EventDetails = (props: EventDetailsI) => {
-  const { modaldata, setCounter } = props;
+  const { modaldata } = props;
  
-
   
   return (
     <>
@@ -62,7 +61,7 @@ const EventDetails = (props: EventDetailsI) => {
                 marginTop: "5px",
               }}
             >
-              {dayjs(modaldata?.contraventionDate).format("DD/MM/YYYY")} at {modaldata?.time}
+              {dayjs(modaldata?.start).format("DD/MM/YYYY")} at {modaldata?.time}
             </Box>
           </Grid>
         </Grid>
@@ -83,7 +82,7 @@ const EventDetails = (props: EventDetailsI) => {
                 marginTop: "5px",
               }}
             >
-              <Typography sx={{ fontSize: "14px", marginTop: "5px" }}>{dayjs(modaldata?.issuedAt).format("DD/MM/YYYY")}</Typography>
+              <Typography sx={{ fontSize: "14px", marginTop: "5px" }}>{dayjs(modaldata?.end).format("DD/MM/YYYY")}</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -104,7 +103,7 @@ const EventDetails = (props: EventDetailsI) => {
                 marginTop: "5px",
               }}
             >
-              <Typography sx={{ fontSize: "14px" }}>{`£ ${modaldata?.amount}`}</Typography>
+              <Typography sx={{ fontSize: "14px" }}>{` ${modaldata?.title}`}</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -129,7 +128,28 @@ const EventDetails = (props: EventDetailsI) => {
             </Box>
           </Grid>
         </Grid>
-        
+        <Grid container>
+          <Grid item xs={6} sm={4}>
+            <Box sx={{ color: "#152536" }}>
+              <Typography className=" modaltitle" sx={{ fontSize: "14px", fontWeight: "700", marginTop: "5px" }}>
+                Event Country :
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <Box
+              sx={{
+                marginLeft: { sm: "4px" },
+                color: "#152536",
+                fontSize: "14px",
+                marginTop: "5px",
+              }}
+            >
+              <Typography sx={{ fontSize: "14px" }}>{`£ ${modaldata?.country}`}</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      
       </>
     
      

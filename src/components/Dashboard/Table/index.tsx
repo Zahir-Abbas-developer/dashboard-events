@@ -1,19 +1,18 @@
 "use client"
-import {  useMemo, useState } from "react";
-import { Box, Button, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, useTheme } from "@mui/material";
 import { tableHeader } from "./table.data";
 import { v4 as uuidv4 } from "uuid";
-import debounce from "lodash.debounce";
-import './Table.scss'
-
-import { UnfoldMore,RemoveRedEye, Search } from "@mui/icons-material";
+import { UnfoldMore, Search } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { useGetEventsQuery } from "@/services/event-api";
 import Modals from "../EventDetailsModal";
 import { ApiLoader } from "@/components/PreLoader/Index";
 import { debouncedSearch } from "@/utils/debounce";
 import FilterPopover from "../FilterCategory";
-const EventsTable=()=>{
+import './Table.scss'
+
+const EventsTable = () => {
 
   const [modaldata, setModalData] = useState<any>();
   const [page, setPage] = useState(0);
@@ -21,35 +20,35 @@ const EventsTable=()=>{
   const [pagination, setPagination] = useState(1);
   const [counter, setCounter] = useState(1);
   const [modal, setModal] = useState(false);
-  const [searchEventCategory, setSearchEventCategory] = useState("");
+  const [country, setCountry] = useState("");
   const [category, setCategory] = useState("");
   const [sortItem, setSortItem] = useState<any>({ type: true, field: "" });
 
+  const theme = useTheme()
+
+  const debouncedResults = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    debouncedSearch(value, setCountry);
+  };
+  const paramsObj: any = {}
+  if ((country)) paramsObj['country'] = country;
+  if ((category)) paramsObj['category'] = category;
+  if ((sortItem.field)) paramsObj['sort'] = sortItem.field;
 
 
-const debouncedResults = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const { value } = event.target;
-  debouncedSearch(value, setSearchEventCategory);
-};
-const paramsObj:any = {}
-if ((searchEventCategory)) paramsObj['category'] = searchEventCategory;
-if ((category)) paramsObj['category'] = category;
-if ((sortItem.field)) paramsObj['sort'] = sortItem.field;
+  const params = "&" + new URLSearchParams(paramsObj).toString();
+  const { data, isLoading, isSuccess, isError } = useGetEventsQuery({ params })
 
 
-const params = "&" + new URLSearchParams(paramsObj).toString();
-const {data,isLoading,isSuccess}=useGetEventsQuery({params})
+  let eventsData: any
+  if (isSuccess) {
+    eventsData = data
+  }
 
-
-let eventsData:any
-if(isSuccess){
-  eventsData=data
-}
-console.log(sortItem)
-return(
-  <>
-    <Box className=" table-hold  border-radius-8 " sx={{ mt: 2 }}>
-  <Toolbar className="toolbox">
+  return (
+    <>
+      <Box className=" table-hold  border-radius-8 " sx={{ mt: 2 }}>
+        <Toolbar className="toolbox">
           <Stack direction="row" justifyContent="space-between" width="100%" alignItems="center" flexWrap="wrap" className="toolbox-hold">
             <Stack direction="row" spacing={2} alignItems="center" className="search-hold">
               <h6 className="fs-18 line-height-20 fw-700 grey-color">List of Events</h6>
@@ -62,7 +61,7 @@ return(
                     setPagination(1);
                   }}
                   className="searchbar border-radius-4"
-                  placeholder="Search By Event Category"
+                  placeholder="Search By Event Country"
                 />
               </div>
             </Stack>
@@ -71,79 +70,78 @@ return(
                 <Stack direction="row" spacing={2}>
                   <span className="headIcon">
                     <FilterPopover
-              category={category}
-              setCategory={setCategory}
+                      category={category}
+                      setCategory={setCategory}
                       pagination={pagination}
 
-                    
+
                     />
                   </span>
 
-                  
-                 
                 </Stack>
               </IconButton>
             </div>
           </Stack>
         </Toolbar>
-   <TableContainer>
-  <Table  sx={{ minWidth: 650 }} aria-label="simple table">
-    <TableHead>
-      <TableRow>
-        {tableHeader.map((p, index) => {
-          return (
-            <TableCell key={uuidv4()}>
-              <p className="fs-14">
-                {p.name}
-                {p.sortIcon && (
-                  <UnfoldMore
-                    onClick={() => {
-                      setSortItem({ type: !sortItem.type, field: p.sortdata });
-                    }}
-                  />
-                )}
-              </p>
-            </TableCell>
-          );
-        })}
-        
-       
-      </TableRow>
-    </TableHead>
-    {!isLoading && (
-      <TableBody>
-        {eventsData?.results?.map((row: any, index: any) => (
-          <TableRow key={uuidv4()}>
-            <TableCell>{itemId + index}</TableCell>
-            <TableCell>{row.category}</TableCell>
-            {/* <TableCell>{row.description?row.description:"--------"}</TableCell> */}
-            <TableCell>{dayjs(row.start).format("DD/MM/YYYY")}</TableCell>
-            <TableCell>{dayjs(row.end).format("DD/MM/YYYY")}</TableCell>
-            <TableCell>{row.title}</TableCell>
-           
-            <TableCell>
-              <Button
-              onClick={() => {
-                setModalData(row);
-                setModal(true);
-               
-              }}
-                disableRipple
-                sx={{ width: "auto",cursor:'default' }} 
-              >
-                <Button variant="contained" className="small">   View Details</Button>
-      
-              </Button>
-            </TableCell>
-           
-          </TableRow>
-        ))}
-      </TableBody>
-    )}
-  </Table>
-  {isLoading ? <ApiLoader /> : eventsData?.results?.length === 0 && <p>No Results</p>}
-</TableContainer>
-  <Box mt="15px">
+        <TableContainer>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {tableHeader.map((p) => {
+                  return (
+                    <TableCell key={uuidv4()}>
+                      <p className="fs-14">
+                        {p.name}
+                        {p.sortIcon && (
+                          <UnfoldMore
+                            onClick={() => {
+                              setSortItem({ type: !sortItem.type, field: p.sortdata });
+                            }}
+                          />
+                        )}
+                      </p>
+                    </TableCell>
+                  );
+                })}
+
+
+              </TableRow>
+            </TableHead>
+            {!isLoading && (
+              <TableBody>
+                {eventsData?.results?.map((row: any, index: any) => (
+                  <TableRow key={uuidv4()}>
+                    <TableCell>{itemId + index}</TableCell>
+                    <TableCell>{row.category}</TableCell>
+                    <TableCell>{row.country}</TableCell>
+                    <TableCell>{row.description ? row.description.substring(0, 40) + "..." : "------"}</TableCell>
+                    <TableCell>{dayjs(row.start).format("DD/MM/YYYY")}</TableCell>
+                    <TableCell>{dayjs(row.end).format("DD/MM/YYYY")}</TableCell>
+                    <TableCell>{row.title}</TableCell>
+
+                    <TableCell>
+                      <Button
+                        onClick={() => {
+                          setModalData(row);
+                          setModal(true);
+
+                        }}
+                        disableRipple
+                        sx={{ width: "auto", cursor: 'default' }}
+                      >
+                        <Button variant="contained" className="small" >   View Details</Button>
+
+                      </Button>
+                    </TableCell>
+
+                  </TableRow>
+                ))}
+              </TableBody>
+            )}
+          </Table>
+          {isLoading ? <ApiLoader /> : isError && <p style={{ textAlign: "center" }}>No Results Found</p>}
+        </TableContainer>
+        <Box mt="15px">
           {eventsData?.count > 0 && (
             <Box
               sx={{
@@ -177,19 +175,19 @@ return(
             </Box>
           )}
         </Box>
-        
+
         <Modals
           modal={modal}
           setCounter={setCounter}
           counter={counter}
           handleModel={setModal}
-          modaldata={modaldata }
-        
-        />
-        </Box>
-  </>
- 
+          modaldata={modaldata}
 
-) 
+        />
+      </Box>
+    </>
+
+
+  )
 }
 export default EventsTable

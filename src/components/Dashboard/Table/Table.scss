@@ -2,6 +2,110 @@
 
 
 
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+  font-family: "Roboto", "Oxygen", sans-serif, "Ubuntu", "Cantarell",
+  "Fira Sans", "Droid Sans", "Helvetica Neue";
+  border: none;
+  color: $white-color !important;
+  line-height: $line-height-20;
+  font-size: $font-size-16 !important;
+  font-weight: $font-weight-700 !important;
+  border-radius: $border-radius-4;
+  text-transform: capitalize !important;
+  box-shadow: none !important;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $heading-color !important;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color !important;
+  padding: $btn-padding !important;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-danger {
+  background-color: $error-color;
+
+  &:hover {
+    background-color: $heading-color !important;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color !important;
+  padding: $btn-padding;
+  line-height: $line-height-24;
+}
+
+.btn-white {
+  box-shadow: none !important;
+  padding: $btn-padding;
+  background-color: $white-color !important;
+  border: none;
+
+  &:hover {
+    background-color: rgb(238, 238, 238) !important;
+    box-shadow: none !important;
+  }
+}
+
+.btn-outline {
+  color: $primary-color !important;
+  font-style: normal;
+  padding: $btn-padding;
+  background-color: $white-color;
+  border: 1.5px solid $primary-color;
+}
+
+.btn-text-uppercase {
+  text-transform: uppercase !important;
+}
+
+//  Breadcrum global style
+.BreadCrum_main {
+  margin-bottom: 25px;
+
+  span {
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5) {
+      font-size: $font-size-16;
+      line-height: $line-height-20;
+      color: $grey-color;
+    }
+
+    &:nth-child(1) {
+      font-weight: $font-weight-500;
+      font-size: $font-size-24;
+      line-height: $line-height-28;
+      padding-right: 5px;
+      border-right: 1px solid $grey-color;
+    }
+
+    &:nth-child(2) {
+      color: $link-color;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+
+    &:nth-child(4) {
+      cursor: pointer;
+    }
+  }
+}
+
 .border-radius-4 {
   border-radius: $border-radius-4;
 }
@@ -18,8 +122,17 @@
   cursor: pointer;
 }
 
+// Color classes start here
 .text-white {
   color: $white-color;
+}
+
+.primary-color {
+  color: $primary-color;
+}
+
+.disabled-color {
+  color: #b1b1b1;
 }
 
 .icon-color {
@@ -320,6 +433,108 @@
       button {
         float: right;
       }
+    }
+  }
+}
+
+//table styling end
+
+.filterBox {
+  background: $white-color;
+  border-radius: $border-radius-8;
+  box-shadow: 0px 0px 3px 1px rgba($color: $black-color, $alpha: 0.25);
+  padding: 0.3rem 1rem 1rem;
+  position: relative;
+
+  .top-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0 1rem;
+
+    .clear-btn {
+      text-transform: capitalize;
+      color: $dashboard-alert-color;
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    margin-right: 0px !important;
+
+    .grid {
+      grid-template-columns: none !important;
+    }
+
+    .showFilter {
+      position: unset !important;
+    }
+  }
+}
+
+[type="file"]::file-selector-button {
+  display: none;
+  cursor: pointer;
+}
+
+.MuiRating-iconEmpty svg {
+  color: #e5e9ec;
+}
+
+.MuiRating-iconFilled {
+  color: #f1e44a;
+}
+
+.table-status-process{
+  background: $yellow-color;
+}
+.appeal-table-status-rejected{
+  color: $error-color !important;
+  font-weight: bold;
+}
+.appeal-table-status-process{
+  color: $yellow-color !important;
+  font-weight: bold;
+}
+//  Breadcrum global style
+.BreadCrum_main {
+  margin-bottom: 25px;
+
+  span {
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5) {
+      font-size: $font-size-16;
+      line-height: $line-height-20;
+      color: $grey-color;
+    }
+
+    &:nth-child(1) {
+      font-weight: $font-weight-500;
+      font-size: $font-size-24;
+      line-height: $line-height-28;
+      padding-right: 5px;
+      border-right: 1px solid $grey-color;
+    }
+
+    &:nth-child(2) {
+      color: $link-color;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+
+    &:nth-child(4) {
+      cursor: pointer;
     }
   }
 }
