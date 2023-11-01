@@ -3,34 +3,49 @@ import {  useMemo, useState } from "react";
 import { Box, Button, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar } from "@mui/material";
 import { tableHeader } from "./table.data";
 import { v4 as uuidv4 } from "uuid";
-
+import debounce from "lodash.debounce";
+import './Table.scss'
 
 import { UnfoldMore,RemoveRedEye, Search } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { useGetEventsQuery } from "@/services/event-api";
 import Modals from "../EventDetailsModal";
+import { ApiLoader } from "@/components/PreLoader/Index";
+import { debouncedSearch } from "@/utils/debounce";
+import FilterPopover from "../FilterCategory";
 const EventsTable=()=>{
-  const {data,isLoading,isSuccess}=useGetEventsQuery({})
+
   const [modaldata, setModalData] = useState<any>();
   const [page, setPage] = useState(0);
   const [itemId, setItemId] = useState<number>(1);
   const [pagination, setPagination] = useState(1);
   const [counter, setCounter] = useState(1);
   const [modal, setModal] = useState(false);
+  const [searchEventCategory, setSearchEventCategory] = useState("");
+  const [category, setCategory] = useState("");
   const [sortItem, setSortItem] = useState<any>({ type: true, field: "createdAt" });
-  console.log(data)
+
+
+
+const debouncedResults = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const { value } = event.target;
+  debouncedSearch(value, setSearchEventCategory);
+};
+const paramsObj:any = {}
+if ((searchEventCategory)) paramsObj['category'] = searchEventCategory;
+if ((category)) paramsObj['category'] = category;
+
+const params = "&" + new URLSearchParams(paramsObj).toString();
+const {data,isLoading,isSuccess}=useGetEventsQuery({params})
+
 
 let eventsData:any
 if(isSuccess){
   eventsData=data
 }
-
-// const debouncedResults = useMemo(() => {
-//   return debounce(handleChange, 500);
-// }, []);
-
 return(
   <>
+    <Box className=" table-hold  border-radius-8 " sx={{ mt: 2 }}>
   <Toolbar className="toolbox">
           <Stack direction="row" justifyContent="space-between" width="100%" alignItems="center" flexWrap="wrap" className="toolbox-hold">
             <Stack direction="row" spacing={2} alignItems="center" className="search-hold">
@@ -40,7 +55,7 @@ return(
                 <input
                   type="text"
                   onChange={(e: any) => {
-                    // debouncedResults(e);
+                    debouncedResults(e);
                     setPagination(1);
                   }}
                   className="searchbar border-radius-4"
@@ -52,15 +67,13 @@ return(
               <IconButton disableRipple>
                 <Stack direction="row" spacing={2}>
                   <span className="headIcon">
-                    {/* <FilterPopover
-                      endPointPcnFilter={endPointPcnFilter}
-                      filterParamsField={filterParamsField}
+                    <FilterPopover
+              category={category}
+              setCategory={setCategory}
                       pagination={pagination}
-                      vehicleNumbers={vehicleNumbers}
-                      userRole={userRole}
-                      employee={employee}
-                      endPoint={endPoint}
-                    /> */}
+
+                    
+                    />
                   </span>
 
                   
@@ -71,7 +84,7 @@ return(
           </Stack>
         </Toolbar>
    <TableContainer>
-  <Table className="table-status-pcn" sx={{ minWidth: 650 }} aria-label="simple table">
+  <Table  sx={{ minWidth: 650 }} aria-label="simple table">
     <TableHead>
       <TableRow>
         {tableHeader.map((p, index) => {
@@ -90,9 +103,7 @@ return(
             </TableCell>
           );
         })}
-        <TableCell>
-          <p className="ps-14">Status</p>
-        </TableCell>
+        
        
       </TableRow>
     </TableHead>
@@ -127,7 +138,7 @@ return(
       </TableBody>
     )}
   </Table>
-  {/* {isLoading ? <ApiLoader /> : totallPcn?.total === 0 && <p>No Results</p>} */}
+  {isLoading ? <ApiLoader /> : eventsData?.results?.length === 0 && <p>No Results</p>}
 </TableContainer>
   <Box mt="15px">
           {eventsData?.count > 0 && (
@@ -172,6 +183,7 @@ return(
           modaldata={modaldata }
         
         />
+        </Box>
   </>
  
 

@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import './globals.scss'
 import ThemeProvider from '@/theme'
 import ThemeLocalization from '@/theme/ThemeLocalization'
 import { Provider } from 'react-redux'

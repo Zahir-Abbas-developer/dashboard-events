@@ -1,3 +1,9 @@
+/* @import '../components/Dashboard/Table/Table.scss'; */
+@import '../components/Dashboard/Table/Table.scss';
+@import '../components//PreLoader/preloader.scss';
+@import '../components//Dashboard/FilterCategory/FilterCategory.scss';
+
+
 
 :root {
   --max-width: 1100px;
@@ -41,6 +47,7 @@
   --card-border-rgb: 131, 134, 135;
 }
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -73,6 +80,7 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+
 
 * {
   box-sizing: border-box;

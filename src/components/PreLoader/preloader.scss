@@ -1,0 +1,26 @@
+.loader-wrapper,
+.enquiryModalHeight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader-wrapper {
+  min-height: 80vh;
+
+  @media screen and (max-width: 450px) {
+    min-height: 90vh;
+  }
+}
+.enquiryModalHeight {
+  min-height: 50vh;
+}
+@media screen and (max-width: 899px) {
+  .skeleton-grid {
+    display: none;
+  }
+  .skeleton-grid:nth-child(3n + 1) {
+    display: block;
+  }
+}
+
+
