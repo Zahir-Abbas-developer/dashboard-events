@@ -2,6 +2,7 @@
 // RTK Query
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+// @ts-ignore
 import Client from 'predicthq'
 
 // Config
