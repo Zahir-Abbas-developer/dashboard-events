@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Box, Button, Checkbox, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, useTheme } from "@mui/material";
+import { Box, Button, Checkbox, Grid, IconButton, Pagination, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, Typography, useTheme } from "@mui/material";
 import { tableHeader } from "./table.data";
 import { v4 as uuidv4 } from "uuid";
 import { UnfoldMore, Search } from "@mui/icons-material";
@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "@/redux/store";
 import { addFavoriteEvent } from "@/redux/slices/FavouritesEvents";
+import FavouriteEventsData from "@/components/FavouriteEventsData";
 
 
 
@@ -52,8 +53,9 @@ const EventsTable = () => {
     eventsData = data
   }
 
-  const getFavouriteEvents: any = useAppSelector((state: any) => state?.favouriteEvents);
-    console.log(getFavouriteEvents)
+  const getFavouriteEvents: any = useAppSelector((state: any) => state?.favouriteEvents?.favouritesEvents);
+      const loading: any=useAppSelector((state: any) => state?.favouriteEvents?.loading);
+ 
 
   const handleCheckboxChange = (row:any) => {
     setCheckedRows((prevCheckedRows:any) => {
@@ -218,7 +220,14 @@ const EventsTable = () => {
 
         />
       </Box>
-    
+
+      <Grid container >
+      <Grid item xs={12} mt={2}>
+    {getFavouriteEvents.length>0 &&  <Typography variant="h4" mb={2}>Favourites Events</Typography>}
+    <FavouriteEventsData getFavouriteEvents={getFavouriteEvents} loading={loading}/>
+      </Grid>
+
+      </Grid>
     </>
 
 

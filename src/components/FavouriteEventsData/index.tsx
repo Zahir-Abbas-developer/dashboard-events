@@ -2,19 +2,18 @@
 import { Box, Card, CardContent, Grid } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { CardsApiLoader } from "../PreLoader/Index";
-import { useAppSelector } from "@/redux/store";
 
-const FavouriteEventsData=()=>{
-    const getFavouriteEvents: any=useAppSelector((state: any) => state?.favouriteEvents);
+const FavouriteEventsData=({getFavouriteEvents,loading}:any)=>{
 
     return(
         <>
           <Grid container spacing={3} mb={4}>
         {getFavouriteEvents?.map((card: any) => (
           <Grid key={uuidv4()} item xs={12} md={6} lg={3}>
-            {getFavouriteEvents?.length===0 ? (
+            {loading? (
               <CardsApiLoader image="yes" />
             ) : (
+              
               <Card
                 sx={{
                   minHeight: "100%",

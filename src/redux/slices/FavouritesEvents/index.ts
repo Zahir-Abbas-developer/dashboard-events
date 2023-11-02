@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   favouritesEvents: [],
+  isLoading:false,
 };
 
 const eventsSlice = createSlice({
@@ -22,6 +23,9 @@ const eventsSlice = createSlice({
         // If the event is found, remove it from the array
         state.favouritesEvents.splice(index, 1);
       }
+    },
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
     },
   },
 });
