@@ -12,8 +12,9 @@ import { debouncedSearch } from "@/utils/debounce";
 import FilterPopover from "../FilterCategory";
 import './Table.scss'
 import { useDispatch } from "react-redux";
-import { eventsDataFavourites } from "@/redux/slices/FavouritesEvents";
+
 import { useAppSelector } from "@/redux/store";
+import { addFavoriteEvent } from "@/redux/slices/FavouritesEvents";
 
 
 
@@ -65,7 +66,7 @@ const EventsTable = () => {
    
     });
     
-    dispatch(eventsDataFavourites([row]));
+    dispatch(addFavoriteEvent(row));
     
   };
 

@@ -19,7 +19,10 @@ const Layout=({children}:any)=>{
            <Suspense fallback={<PreLoader />}>
             <Header/>
             <Breadcrumb breadCrumbData={tempArray} />
+            <div style={{padding:"0px 40px"}}>
+
             {children}
+            </div>
             </Suspense>
     </Provider>
         </>

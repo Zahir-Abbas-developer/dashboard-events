@@ -10,7 +10,7 @@ import eventsSlice from './slices/FavouritesEvents';
 const store = configureStore({
   reducer: {
     [baseAPI.reducerPath]: baseAPI.reducer,
-    favouriteEvents:eventsSlice.reducer
+    favouriteEvents:eventsSlice
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware().concat(baseAPI.middleware),
