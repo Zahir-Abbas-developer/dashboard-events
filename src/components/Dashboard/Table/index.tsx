@@ -74,6 +74,7 @@ const EventsTable = () => {
 
   return (
     <>
+   {getFavouriteEvents.length>0 && <Typography variant="h4">The favorite events section has been added below the table section.</Typography>}
       <Box className=" table-hold  border-radius-8 " sx={{ mt: 2 }}>
         <Toolbar className="toolbox">
           <Stack direction="row" justifyContent="space-between" width="100%" alignItems="center" flexWrap="wrap" className="toolbox-hold">
